@@ -45,6 +45,63 @@
             </objects>
             <point key="canvasLocation" x="534.78260869565224" y="190.84821428571428"/>
         </scene>
+        <!--New Task View Controller-->
+        <scene sceneID="Kaz-la-erV">
+            <objects>
+                <viewController storyboardIdentifier="NewTaskViewController" id="ZBv-5k-XDA" customClass="NewTaskViewController" customModule="ToDo_TT" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="yVj-6l-Zq3">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="title" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="w4p-74-eyC">
+                                <rect key="frame" x="20" y="108" width="374" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="qxV-br-LXB"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="top" borderStyle="roundedRect" placeholder="description" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="KFk-IP-tQk">
+                                <rect key="frame" x="20" y="168" width="374" height="120"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="120" id="oK1-9c-dOW"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="8a4-Hh-KAh"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="KFk-IP-tQk" firstAttribute="top" secondItem="w4p-74-eyC" secondAttribute="bottom" constant="20" id="IAl-xU-rzt"/>
+                            <constraint firstItem="w4p-74-eyC" firstAttribute="top" secondItem="8a4-Hh-KAh" secondAttribute="top" constant="20" id="MGh-tA-pQM"/>
+                            <constraint firstItem="8a4-Hh-KAh" firstAttribute="trailing" secondItem="w4p-74-eyC" secondAttribute="trailing" constant="20" id="Xve-4g-rL4"/>
+                            <constraint firstItem="8a4-Hh-KAh" firstAttribute="trailing" secondItem="KFk-IP-tQk" secondAttribute="trailing" constant="20" id="dVA-Fm-2KR"/>
+                            <constraint firstItem="KFk-IP-tQk" firstAttribute="leading" secondItem="8a4-Hh-KAh" secondAttribute="leading" constant="20" id="mWy-7U-IAh"/>
+                            <constraint firstItem="w4p-74-eyC" firstAttribute="leading" secondItem="8a4-Hh-KAh" secondAttribute="leading" constant="20" id="ncx-r6-ixp"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="SOo-eM-KqZ">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="hHm-7R-w6Q">
+                            <connections>
+                                <action selector="cancelButtonPressed:" destination="ZBv-5k-XDA" id="J8Z-GJ-jHn"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="YDw-vj-p6P">
+                            <connections>
+                                <action selector="saveButtonPressed:" destination="ZBv-5k-XDA" id="DXv-dd-EYu"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="descriptionTextField" destination="KFk-IP-tQk" id="J7j-Qk-UsN"/>
+                        <outlet property="titleTextField" destination="w4p-74-eyC" id="haQ-3q-ibH"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3YH-HS-fTE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2200" y="191"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="DSe-4W-Sd7">
             <objects>
@@ -62,6 +119,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pkU-tG-8lq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-375.36231884057975" y="190.84821428571428"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="CHm-dx-A6a">
+            <objects>
+                <navigationController storyboardIdentifier="NewTaskNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="hK2-56-Tss" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="3NK-bD-KSy">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="ZBv-5k-XDA" kind="relationship" relationship="rootViewController" id="H4w-RW-rPl"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zHF-0F-Xk4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1288" y="191"/>
         </scene>
     </scenes>
     <resources>
