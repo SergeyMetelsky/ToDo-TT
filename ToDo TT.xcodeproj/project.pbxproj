@@ -16,6 +16,12 @@
 		A5946FCD26C3B476005820BD /* RegisterLogin.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A5946FCC26C3B474005820BD /* RegisterLogin.storyboard */; };
 		A5946FD426C3CFEF005820BD /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5946FD326C3CFEF005820BD /* LoginViewController.swift */; };
 		A594700C26C3E440005820BD /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A594700B26C3E440005820BD /* GoogleService-Info.plist */; };
+		A594702126C4017E005820BD /* Tasks.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A594702026C4017D005820BD /* Tasks.storyboard */; };
+		A594702526C40207005820BD /* TasksListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A594702426C40207005820BD /* TasksListViewController.swift */; };
+		A594702A26C4050B005820BD /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = A594702926C4050A005820BD /* Task.swift */; };
+		A594702D26C407E8005820BD /* DefaultTasks.swift in Sources */ = {isa = PBXBuildFile; fileRef = A594702C26C407E8005820BD /* DefaultTasks.swift */; };
+		A594703726C40AF7005820BD /* TaskCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A594703526C40AF7005820BD /* TaskCell.swift */; };
+		A594703826C40AF7005820BD /* TaskCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A594703626C40AF7005820BD /* TaskCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +38,12 @@
 		A5946FCC26C3B474005820BD /* RegisterLogin.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = RegisterLogin.storyboard; sourceTree = "<group>"; };
 		A5946FD326C3CFEF005820BD /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		A594700B26C3E440005820BD /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		A594702026C4017D005820BD /* Tasks.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Tasks.storyboard; sourceTree = "<group>"; };
+		A594702426C40207005820BD /* TasksListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksListViewController.swift; sourceTree = "<group>"; };
+		A594702926C4050A005820BD /* Task.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
+		A594702C26C407E8005820BD /* DefaultTasks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultTasks.swift; sourceTree = "<group>"; };
+		A594703526C40AF7005820BD /* TaskCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskCell.swift; sourceTree = "<group>"; };
+		A594703626C40AF7005820BD /* TaskCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TaskCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,7 +79,9 @@
 		A5946FB126C319EA005820BD /* ToDo TT */ = {
 			isa = PBXGroup;
 			children = (
+				A594702826C404BA005820BD /* Models */,
 				A5946FD626C3D480005820BD /* RegisterLogin */,
+				A594701F26C4013C005820BD /* Tasks */,
 				A5946FC026C319EF005820BD /* Info.plist */,
 				A594700B26C3E440005820BD /* GoogleService-Info.plist */,
 				A594700A26C3E1F9005820BD /* SupportingFiles */,
@@ -94,6 +108,34 @@
 				A5946FBD26C319EF005820BD /* LaunchScreen.storyboard */,
 			);
 			path = SupportingFiles;
+			sourceTree = "<group>";
+		};
+		A594701F26C4013C005820BD /* Tasks */ = {
+			isa = PBXGroup;
+			children = (
+				A594702F26C40A88005820BD /* TaskCell */,
+				A594702426C40207005820BD /* TasksListViewController.swift */,
+				A594702026C4017D005820BD /* Tasks.storyboard */,
+			);
+			path = Tasks;
+			sourceTree = "<group>";
+		};
+		A594702826C404BA005820BD /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				A594702926C4050A005820BD /* Task.swift */,
+				A594702C26C407E8005820BD /* DefaultTasks.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		A594702F26C40A88005820BD /* TaskCell */ = {
+			isa = PBXGroup;
+			children = (
+				A594703526C40AF7005820BD /* TaskCell.swift */,
+				A594703626C40AF7005820BD /* TaskCell.xib */,
+			);
+			path = TaskCell;
 			sourceTree = "<group>";
 		};
 		C0750CCE3698111C912F7EAC /* Frameworks */ = {
@@ -176,6 +218,8 @@
 				A594700C26C3E440005820BD /* GoogleService-Info.plist in Resources */,
 				A5946FBC26C319EF005820BD /* Assets.xcassets in Resources */,
 				A5946FCD26C3B476005820BD /* RegisterLogin.storyboard in Resources */,
+				A594703826C40AF7005820BD /* TaskCell.xib in Resources */,
+				A594702126C4017E005820BD /* Tasks.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -230,7 +274,11 @@
 			files = (
 				A5946FD426C3CFEF005820BD /* LoginViewController.swift in Sources */,
 				A5946FB726C319EA005820BD /* RegisterViewController.swift in Sources */,
+				A594702526C40207005820BD /* TasksListViewController.swift in Sources */,
 				A5946FB326C319EA005820BD /* AppDelegate.swift in Sources */,
+				A594703726C40AF7005820BD /* TaskCell.swift in Sources */,
+				A594702D26C407E8005820BD /* DefaultTasks.swift in Sources */,
+				A594702A26C4050B005820BD /* Task.swift in Sources */,
 				A5946FB526C319EA005820BD /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

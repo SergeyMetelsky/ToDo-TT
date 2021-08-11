@@ -29,9 +29,10 @@ class LoginViewController: UIViewController {
             Auth.auth().signIn(withEmail: email, password: password) { [weak self] (user, error) in
                 guard let self = self else { return }
                 if user != nil {
-                    print("i am inside")
-//                    guard let destinationVC = self.storyboard?.instantiateViewController(identifier: "") else { return }
-//                    self.navigationController?.pushViewController(destinationVC, animated: true)
+//                    print("i am inside")
+                    let storyboard = UIStoryboard(name: "Tasks", bundle: nil)
+                    let destinationVC = storyboard.instantiateViewController(identifier: "TasksListViewController")
+                    self.navigationController?.pushViewController(destinationVC, animated: true)
                 } else {
                     let errorMessage = error?.localizedDescription ?? "Error"
                     let alertVC = UIAlertController(title: nil, message: errorMessage, preferredStyle: .alert)
