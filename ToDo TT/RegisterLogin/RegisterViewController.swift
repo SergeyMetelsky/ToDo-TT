@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import Firebase
+import FirebaseAuth
 
 class RegisterViewController: UIViewController {
     
@@ -24,8 +26,21 @@ class RegisterViewController: UIViewController {
     }
     
     @IBAction func registerButtonPressed(_ sender: UIButton) {
-        guard let destinationVC = storyboard?.instantiateViewController(identifier: "LoginViewController") else { return }
-        navigationController?.pushViewController(destinationVC, animated: true)
+        if let email = emailTextField.text, let password = passwordTextField.text {
+            Auth.auth().createUser(withEmail: email, password: password) { [weak self] (user, error) in
+                guard let self = self else { return }
+                if user != nil {
+                    guard let destinationVC = self.storyboard?.instantiateViewController(identifier: "LoginViewController") else { return }
+                    self.navigationController?.pushViewController(destinationVC, animated: true)
+                } else {
+                    let errorMessage = error?.localizedDescription ?? "Error"
+                    let alertVC = UIAlertController(title: nil, message: errorMessage, preferredStyle: .alert)
+                    let action = UIAlertAction(title: "Ok", style: .cancel, handler: nil)
+                    alertVC.addAction(action)
+                    self.present(alertVC, animated: true, completion: nil)
+                }
+            }
+        }
     }
 }
 

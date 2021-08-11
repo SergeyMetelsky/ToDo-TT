@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import Firebase
+import FirebaseAuth
 
 class LoginViewController: UIViewController {
 
@@ -14,8 +16,8 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = "Login"
-
-
+        
+        
     }
     
     @IBAction func registerButtonPressed(_ sender: UIButton) {
@@ -23,5 +25,21 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func loginButtonPressed(_ sender: UIButton) {
+        if let email = emailTextField.text, let password = passwordTextField.text {
+            Auth.auth().signIn(withEmail: email, password: password) { [weak self] (user, error) in
+                guard let self = self else { return }
+                if user != nil {
+                    print("i am inside")
+//                    guard let destinationVC = self.storyboard?.instantiateViewController(identifier: "") else { return }
+//                    self.navigationController?.pushViewController(destinationVC, animated: true)
+                } else {
+                    let errorMessage = error?.localizedDescription ?? "Error"
+                    let alertVC = UIAlertController(title: nil, message: errorMessage, preferredStyle: .alert)
+                    let action = UIAlertAction(title: "Ok", style: .cancel, handler: nil)
+                    alertVC.addAction(action)
+                    self.present(alertVC, animated: true, completion: nil)
+                }
+            }
+        }
     }
 }
