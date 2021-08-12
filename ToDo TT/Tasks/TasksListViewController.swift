@@ -93,7 +93,8 @@ extension TasksListViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-//          defaultTasks.tasks.remove(at: indexPath.row)
+            let serverManager = ServerManager()
+            serverManager.removeTaskFromServer(tasks[indexPath.row])
             tasks.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
         }

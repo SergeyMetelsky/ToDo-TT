@@ -24,6 +24,12 @@ class ServerManager {
         }
     }
     
+    func removeTaskFromServer(_ task: Task) {
+        let database = Database.database().reference()
+        let child = database.child("tasks").child("\(task.id)")
+        child.removeValue()
+    }
+    
     func downloadTasksOnComplete(for userId: String, onComplete: @escaping ([Task]) -> Void, onError: @escaping (String) -> Void) {
         
         let database = Database.database().reference()
