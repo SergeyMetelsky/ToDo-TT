@@ -17,17 +17,33 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="8dn-Ug-jDz">
-                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="694"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gaF-nx-Vfk">
+                                <rect key="frame" x="20" y="802" width="374" height="40"/>
+                                <color key="backgroundColor" systemColor="systemBlueColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="9lb-i8-d54"/>
+                                </constraints>
+                                <state key="normal" title="Reload Data">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="reloadDataButtonPressed:" destination="p8z-q8-5gc" eventType="touchUpInside" id="KZ5-vc-O9X"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="xmj-qq-oZT"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="gaF-nx-Vfk" firstAttribute="top" secondItem="8dn-Ug-jDz" secondAttribute="bottom" constant="20" id="2t6-hw-qBs"/>
                             <constraint firstItem="8dn-Ug-jDz" firstAttribute="leading" secondItem="xmj-qq-oZT" secondAttribute="leading" id="EWO-UM-eg2"/>
-                            <constraint firstItem="xmj-qq-oZT" firstAttribute="bottom" secondItem="8dn-Ug-jDz" secondAttribute="bottom" id="RGf-Zi-eps"/>
+                            <constraint firstItem="xmj-qq-oZT" firstAttribute="trailing" secondItem="gaF-nx-Vfk" secondAttribute="trailing" constant="20" id="XjG-he-KKt"/>
                             <constraint firstItem="xmj-qq-oZT" firstAttribute="trailing" secondItem="8dn-Ug-jDz" secondAttribute="trailing" id="Yql-6o-nqO"/>
+                            <constraint firstItem="gaF-nx-Vfk" firstAttribute="leading" secondItem="xmj-qq-oZT" secondAttribute="leading" constant="20" id="bSk-i8-rUb"/>
                             <constraint firstItem="8dn-Ug-jDz" firstAttribute="top" secondItem="xmj-qq-oZT" secondAttribute="top" id="dLe-Va-8R4"/>
+                            <constraint firstItem="xmj-qq-oZT" firstAttribute="bottom" secondItem="gaF-nx-Vfk" secondAttribute="bottom" constant="20" id="sXW-fC-RNw"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="V4u-m7-bEC">
@@ -142,6 +158,9 @@
     <resources>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemBlueColor">
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

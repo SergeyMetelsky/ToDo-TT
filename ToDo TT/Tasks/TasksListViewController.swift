@@ -52,9 +52,13 @@ class TasksListViewController: UIViewController {
         present(newTaskNavigationController, animated: true, completion: nil)
     }
     
-    @objc func notificationFromNewTaskViewController(_ notification: Notification) {
+    @IBAction func reloadDataButtonPressed(_ sender: UIButton) {
         setActualData()
     }
+    
+//    @objc func notificationFromNewTaskViewController(_ notification: Notification) {
+//        setActualData()
+//    }
     
     func setActualData() {
         let serverManager = ServerManager()
