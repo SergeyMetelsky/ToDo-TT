@@ -36,6 +36,9 @@ class NewTaskViewController: UIViewController {
         
         guard let userId = Auth.auth().currentUser?.uid else { return }
         self.userId = userId
+        
+        let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(firstRecognizerClicked(_:)))
+        view.addGestureRecognizer(tapRecognizer)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -66,6 +69,10 @@ class NewTaskViewController: UIViewController {
             newDataReceived?()
             dismiss(animated: true, completion: nil)
         }
+    }
+    
+    @objc func firstRecognizerClicked(_ sender: UITapGestureRecognizer) {
+        view.endEditing(true)
     }
 }
 

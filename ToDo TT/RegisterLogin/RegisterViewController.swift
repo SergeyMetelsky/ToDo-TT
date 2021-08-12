@@ -18,6 +18,12 @@ class RegisterViewController: UIViewController {
         super.viewDidLoad()
         navigationItem.title = "Register"
         
+        let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(firstRecognizerClicked(_:)))
+        view.addGestureRecognizer(tapRecognizer)
+    }
+    
+    @IBAction func tapClicked(_ sender: Any) {
+        view.endEditing(true)
     }
     
     @IBAction func loginButtonPressed(_ sender: UIButton) {
@@ -41,6 +47,10 @@ class RegisterViewController: UIViewController {
                 }
             }
         }
+    }
+    
+    @objc func firstRecognizerClicked(_ sender: UITapGestureRecognizer) {
+        view.endEditing(true)
     }
 }
 
