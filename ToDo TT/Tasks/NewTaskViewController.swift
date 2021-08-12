@@ -16,13 +16,18 @@ class NewTaskViewController: UIViewController {
     var task: Task?
     var userId: String = ""
     var newDataReceived: (() -> ())?
-          
+    let titleMaxLength = 250
+    let descriptionMaxLength = 1000
+    
     @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var descriptionTextField: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = "New Task"
+        
+        self.titleTextField.delegate = self
+        self.descriptionTextField.delegate = self
         
         if let task = task {
             titleTextField.text = task.title
@@ -44,21 +49,30 @@ class NewTaskViewController: UIViewController {
     }
     
     @IBAction func cancelButtonPressed(_ sender: UIBarButtonItem) {
-//        navigationController?.popViewController(animated: true)
+        //        navigationController?.popViewController(animated: true)
         dismiss(animated: true, completion: nil)
     }
     
     
     @IBAction func saveButtonPressed(_ sender: UIBarButtonItem) {
         //        navigationController?.popViewController(animated: true)
-        if let titleText = titleTextField.text, let descriptionText = descriptionTextField.text {
+        if titleTextField.text != "" {
             let id = self.task?.id ?? UUID().uuidString
+            guard let titleText = titleTextField.text, let descriptionText = descriptionTextField.text else { return }
             let task = Task(id: id, userId: self.userId, title: titleText, description: descriptionText)
             let serverManager = ServerManager()
             serverManager.sendTaskToServer(task)
-//            NotificationCenter.default.post(name: newTaskViewControllerNotificationName, object: nil)
+            //            NotificationCenter.default.post(name: newTaskViewControllerNotificationName, object: nil)
             newDataReceived?()
             dismiss(animated: true, completion: nil)
         }
+    }
+}
+
+extension NewTaskViewController: UITextFieldDelegate {
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        guard let text = textField.text else { return true }
+        let maxLength = (textField == titleTextField) ? titleMaxLength : descriptionMaxLength
+        return text.count < maxLength
     }
 }
