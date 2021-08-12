@@ -9,12 +9,13 @@ import UIKit
 import FirebaseAuth
 import FirebaseDatabase
 
-let newTaskViewControllerNotificationName = NSNotification.Name(rawValue: "NewTaskNotification")
+//let newTaskViewControllerNotificationName = NSNotification.Name(rawValue: "NewTaskNotification")
 
 class NewTaskViewController: UIViewController {
     
     var task: Task?
     var userId: String = ""
+    var newDataReceived: (() -> ())?
           
     @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var descriptionTextField: UITextField!
@@ -55,7 +56,8 @@ class NewTaskViewController: UIViewController {
             let task = Task(id: id, userId: self.userId, title: titleText, description: descriptionText)
             let serverManager = ServerManager()
             serverManager.sendTaskToServer(task)
-            NotificationCenter.default.post(name: newTaskViewControllerNotificationName, object: nil)
+//            NotificationCenter.default.post(name: newTaskViewControllerNotificationName, object: nil)
+            newDataReceived?()
             dismiss(animated: true, completion: nil)
         }
     }

@@ -19,10 +19,10 @@ class TasksListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(notificationFromNewTaskViewController(_:)),
-                                               name: newTaskViewControllerNotificationName,
-                                               object: nil)
+//        NotificationCenter.default.addObserver(self,
+//                                               selector: #selector(notificationFromNewTaskViewController(_:)),
+//                                               name: newTaskViewControllerNotificationName,
+//                                               object: nil)
         navigationItem.title = "Tasks"
         
         tableView.dataSource = self
@@ -43,8 +43,13 @@ class TasksListViewController: UIViewController {
 //        guard let destinationVC = self.storyboard?.instantiateViewController(identifier: "NewTaskViewController") else { return }
 //        self.navigationController?.pushViewController(destinationVC, animated: true)
         
-        guard let destinationVC = self.storyboard?.instantiateViewController(identifier: "NewTaskNavigationController") as? UINavigationController else { return }
-        present(destinationVC, animated: true, completion: nil)
+        guard let newTaskNavigationController = self.storyboard?.instantiateViewController(identifier: "NewTaskNavigationController") as? UINavigationController else { return }
+        guard let newTaskViewController = newTaskNavigationController.viewControllers.first as? NewTaskViewController else { return }
+        newTaskViewController.newDataReceived = { [weak self] in
+            guard let self = self else { return }
+            self.setActualData()
+        }
+        present(newTaskNavigationController, animated: true, completion: nil)
     }
     
     @objc func notificationFromNewTaskViewController(_ notification: Notification) {
@@ -102,11 +107,15 @@ extension TasksListViewController: UITableViewDelegate, UITableViewDataSource {
 //        destinationVC.task = defaultTask
 //        self.navigationController?.pushViewController(destinationVC, animated: true)
         
-        guard let destinationVC = self.storyboard?.instantiateViewController(identifier: "NewTaskNavigationController") as? UINavigationController else { return }
-        guard let destinationVC2 = destinationVC.viewControllers.first as? NewTaskViewController else { return }
-//        destinationVC2.task = defaultTask
-        destinationVC2.task = task
-        present(destinationVC, animated: true, completion: nil)
+        guard let newTaskNavigationController = self.storyboard?.instantiateViewController(identifier: "NewTaskNavigationController") as? UINavigationController else { return }
+        guard let newTaskViewController = newTaskNavigationController.viewControllers.first as? NewTaskViewController else { return }
+        newTaskViewController.task = task
+        newTaskViewController.newDataReceived = { [weak self] in
+            guard let self = self else { return }
+            self.setActualData()
+        }
+        
+        present(newTaskNavigationController, animated: true, completion: nil)
     }
     
 //    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
