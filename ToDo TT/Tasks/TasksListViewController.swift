@@ -6,21 +6,37 @@
 //
 
 import UIKit
+import FirebaseAuth
+import FirebaseDatabase
 
 class TasksListViewController: UIViewController {
     var tasks: [Task] = []
     let defaultTasks: DefaultTasks = DefaultTasks()
+    var userId: String = ""
 
     @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(notificationFromNewTaskViewController(_:)),
+                                               name: newTaskViewControllerNotificationName,
+                                               object: nil)
         navigationItem.title = "Tasks"
         
         tableView.dataSource = self
         tableView.delegate = self
         
         tableView.register(UINib(nibName: "TaskCell", bundle: nil), forCellReuseIdentifier: "TaskCell")
+        
+        guard let userId = Auth.auth().currentUser?.uid else { return }
+        self.userId = userId
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super .viewWillAppear(animated)
+        setActualData()
     }
     
     @IBAction func plusButtonPressed(_ sender: UIBarButtonItem) {
@@ -30,6 +46,21 @@ class TasksListViewController: UIViewController {
         guard let destinationVC = self.storyboard?.instantiateViewController(identifier: "NewTaskNavigationController") as? UINavigationController else { return }
         present(destinationVC, animated: true, completion: nil)
     }
+    
+    @objc func notificationFromNewTaskViewController(_ notification: Notification) {
+        setActualData()
+    }
+    
+    func setActualData() {
+        let serverManager = ServerManager()
+        serverManager.downloadTasksOnComplete(for: self.userId) { [weak self] (tasks) in
+            guard let self = self else { return }
+            self.tasks = tasks
+            self.tableView.reloadData()
+        } onError: { (error) in
+            print(error)
+        }
+    }
 }
 
 extension TasksListViewController: UITableViewDelegate, UITableViewDataSource {
@@ -38,14 +69,16 @@ extension TasksListViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        return tasks.count
-        return defaultTasks.tasks.count
+        return tasks.count
+//        return defaultTasks.tasks.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TaskCell", for: indexPath) as! TaskCell
-        let defaultTask = self.defaultTasks.tasks[indexPath.item]
-        cell.setupCell(task: defaultTask)
+//        let defaultTask = self.defaultTasks.tasks[indexPath.item]
+//        cell.setupCell(task: defaultTask)
+        let task = self.tasks[indexPath.item]
+        cell.setupCell(task: task)
         return cell
     }
     
@@ -55,21 +88,24 @@ extension TasksListViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-//            objects.remove(at: indexPath.row)
-            defaultTasks.tasks.remove(at: indexPath.row)
+//          defaultTasks.tasks.remove(at: indexPath.row)
+            tasks.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
         }
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let defaultTask = defaultTasks.tasks[indexPath.row]
+//        let defaultTask = defaultTasks.tasks[indexPath.row]
+        let task = tasks[indexPath.row]
+        
 //        guard let destinationVC = self.storyboard?.instantiateViewController(identifier: "NewTaskViewController") as? NewTaskViewController else { return }
 //        destinationVC.task = defaultTask
 //        self.navigationController?.pushViewController(destinationVC, animated: true)
         
         guard let destinationVC = self.storyboard?.instantiateViewController(identifier: "NewTaskNavigationController") as? UINavigationController else { return }
         guard let destinationVC2 = destinationVC.viewControllers.first as? NewTaskViewController else { return }
-        destinationVC2.task = defaultTask
+//        destinationVC2.task = defaultTask
+        destinationVC2.task = task
         present(destinationVC, animated: true, completion: nil)
     }
     

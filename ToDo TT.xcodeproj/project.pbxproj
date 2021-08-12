@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		32EBA95D2D062A0D5DC76486 /* Pods_ToDo_TT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E26334245FF00E3A1D90092 /* Pods_ToDo_TT.framework */; };
 		A577E69426C42FAF004EF46D /* NewTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A577E69326C42FAF004EF46D /* NewTaskViewController.swift */; };
+		A577E6C626C48488004EF46D /* ServerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A577E6C526C48488004EF46D /* ServerManager.swift */; };
 		A5946FB326C319EA005820BD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5946FB226C319EA005820BD /* AppDelegate.swift */; };
 		A5946FB526C319EA005820BD /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5946FB426C319EA005820BD /* SceneDelegate.swift */; };
 		A5946FB726C319EA005820BD /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5946FB626C319EA005820BD /* RegisterViewController.swift */; };
@@ -30,6 +31,7 @@
 		4E26334245FF00E3A1D90092 /* Pods_ToDo_TT.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ToDo_TT.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		59D1638C3C7856630510B2CF /* Pods-ToDo TT.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ToDo TT.release.xcconfig"; path = "Target Support Files/Pods-ToDo TT/Pods-ToDo TT.release.xcconfig"; sourceTree = "<group>"; };
 		A577E69326C42FAF004EF46D /* NewTaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTaskViewController.swift; sourceTree = "<group>"; };
+		A577E6C526C48488004EF46D /* ServerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerManager.swift; sourceTree = "<group>"; };
 		A5946FAF26C319EA005820BD /* ToDo TT.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ToDo TT.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5946FB226C319EA005820BD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A5946FB426C319EA005820BD /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -128,6 +130,7 @@
 			children = (
 				A594702926C4050A005820BD /* Task.swift */,
 				A594702C26C407E8005820BD /* DefaultTasks.swift */,
+				A577E6C526C48488004EF46D /* ServerManager.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -275,6 +278,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A577E6C626C48488004EF46D /* ServerManager.swift in Sources */,
 				A5946FD426C3CFEF005820BD /* LoginViewController.swift in Sources */,
 				A5946FB726C319EA005820BD /* RegisterViewController.swift in Sources */,
 				A594702526C40207005820BD /* TasksListViewController.swift in Sources */,
