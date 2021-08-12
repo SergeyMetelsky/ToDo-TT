@@ -22,10 +22,6 @@ class RegisterViewController: UIViewController {
         view.addGestureRecognizer(tapRecognizer)
     }
     
-    @IBAction func tapClicked(_ sender: Any) {
-        view.endEditing(true)
-    }
-    
     @IBAction func loginButtonPressed(_ sender: UIButton) {
         guard let destinationVC = storyboard?.instantiateViewController(identifier: "LoginViewController") else { return }
         navigationController?.pushViewController(destinationVC, animated: true)

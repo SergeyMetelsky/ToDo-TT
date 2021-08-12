@@ -20,18 +20,18 @@ class NewTaskViewController: UIViewController {
     let descriptionMaxLength = 1000
     
     @IBOutlet weak var titleTextField: UITextField!
-    @IBOutlet weak var descriptionTextField: UITextField!
+    @IBOutlet weak var descriptionTextView: UITextView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = "New Task"
         
         self.titleTextField.delegate = self
-        self.descriptionTextField.delegate = self
+        self.descriptionTextView.delegate = self
         
         if let task = task {
             titleTextField.text = task.title
-            descriptionTextField.text = task.description
+            descriptionTextView.text = task.description
         }
         
         guard let userId = Auth.auth().currentUser?.uid else { return }
@@ -61,7 +61,7 @@ class NewTaskViewController: UIViewController {
         //        navigationController?.popViewController(animated: true)
         if titleTextField.text != "" {
             let id = self.task?.id ?? UUID().uuidString
-            guard let titleText = titleTextField.text, let descriptionText = descriptionTextField.text else { return }
+            guard let titleText = titleTextField.text, let descriptionText = descriptionTextView.text else { return }
             let task = Task(id: id, userId: self.userId, title: titleText, description: descriptionText)
             let serverManager = ServerManager()
             serverManager.sendTaskToServer(task)
@@ -76,10 +76,22 @@ class NewTaskViewController: UIViewController {
     }
 }
 
-extension NewTaskViewController: UITextFieldDelegate {
+extension NewTaskViewController: UITextFieldDelegate, UITextViewDelegate {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        guard let text = textField.text else { return true }
-        let maxLength = (textField == titleTextField) ? titleMaxLength : descriptionMaxLength
-        return text.count < maxLength
+        if textField == titleTextField {
+            guard let text = textField.text else { return true }
+            return text.count < self.titleMaxLength
+        }
+        
+        return false
+    }
+    
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        if textView == descriptionTextView {
+            guard let text = textView.text else { return true }
+            return text.count < self.descriptionMaxLength
+        }
+        
+        return false
     }
 }

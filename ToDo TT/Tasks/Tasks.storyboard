@@ -69,32 +69,51 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="title" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="w4p-74-eyC">
-                                <rect key="frame" x="20" y="108" width="374" height="40"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="ulH-Tt-D4I">
+                                <rect key="frame" x="20" y="217" width="374" height="625"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="textColor" systemColor="labelColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZDS-DK-aPV">
+                                <rect key="frame" x="20" y="192.5" width="374" height="19.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <color key="textColor" systemColor="opaqueSeparatorColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zFl-XW-F9L">
+                                <rect key="frame" x="20" y="108" width="374" height="19.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <color key="textColor" systemColor="opaqueSeparatorColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="w4p-74-eyC">
+                                <rect key="frame" x="20" y="132.5" width="374" height="40"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="qxV-br-LXB"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="top" borderStyle="roundedRect" placeholder="description" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="KFk-IP-tQk">
-                                <rect key="frame" x="20" y="168" width="374" height="120"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="120" id="oK1-9c-dOW"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="8a4-Hh-KAh"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" systemColor="systemGray6Color"/>
                         <constraints>
-                            <constraint firstItem="KFk-IP-tQk" firstAttribute="top" secondItem="w4p-74-eyC" secondAttribute="bottom" constant="20" id="IAl-xU-rzt"/>
-                            <constraint firstItem="w4p-74-eyC" firstAttribute="top" secondItem="8a4-Hh-KAh" secondAttribute="top" constant="20" id="MGh-tA-pQM"/>
+                            <constraint firstItem="8a4-Hh-KAh" firstAttribute="bottom" secondItem="ulH-Tt-D4I" secondAttribute="bottom" constant="20" id="JWf-nH-mH8"/>
+                            <constraint firstItem="8a4-Hh-KAh" firstAttribute="trailing" secondItem="zFl-XW-F9L" secondAttribute="trailing" constant="20" id="L8u-PS-TyL"/>
+                            <constraint firstItem="ZDS-DK-aPV" firstAttribute="top" secondItem="w4p-74-eyC" secondAttribute="bottom" constant="20" id="OAJ-VE-eVF"/>
+                            <constraint firstItem="ulH-Tt-D4I" firstAttribute="top" secondItem="ZDS-DK-aPV" secondAttribute="bottom" constant="5" id="Rlj-B9-Se5"/>
+                            <constraint firstItem="8a4-Hh-KAh" firstAttribute="trailing" secondItem="ZDS-DK-aPV" secondAttribute="trailing" constant="20" id="USa-s8-JIN"/>
                             <constraint firstItem="8a4-Hh-KAh" firstAttribute="trailing" secondItem="w4p-74-eyC" secondAttribute="trailing" constant="20" id="Xve-4g-rL4"/>
-                            <constraint firstItem="8a4-Hh-KAh" firstAttribute="trailing" secondItem="KFk-IP-tQk" secondAttribute="trailing" constant="20" id="dVA-Fm-2KR"/>
-                            <constraint firstItem="KFk-IP-tQk" firstAttribute="leading" secondItem="8a4-Hh-KAh" secondAttribute="leading" constant="20" id="mWy-7U-IAh"/>
+                            <constraint firstItem="ZDS-DK-aPV" firstAttribute="leading" secondItem="8a4-Hh-KAh" secondAttribute="leading" constant="20" id="bYR-lq-208"/>
+                            <constraint firstItem="zFl-XW-F9L" firstAttribute="top" secondItem="8a4-Hh-KAh" secondAttribute="top" constant="20" id="fWp-wo-aNU"/>
+                            <constraint firstItem="zFl-XW-F9L" firstAttribute="leading" secondItem="8a4-Hh-KAh" secondAttribute="leading" constant="20" id="gLw-ES-cvV"/>
+                            <constraint firstItem="w4p-74-eyC" firstAttribute="top" secondItem="zFl-XW-F9L" secondAttribute="bottom" constant="5" id="gxf-qY-ia6"/>
                             <constraint firstItem="w4p-74-eyC" firstAttribute="leading" secondItem="8a4-Hh-KAh" secondAttribute="leading" constant="20" id="ncx-r6-ixp"/>
+                            <constraint firstItem="8a4-Hh-KAh" firstAttribute="trailing" secondItem="ulH-Tt-D4I" secondAttribute="trailing" constant="20" id="sCD-C2-w2Y"/>
+                            <constraint firstItem="ulH-Tt-D4I" firstAttribute="leading" secondItem="8a4-Hh-KAh" secondAttribute="leading" constant="20" id="x4a-HC-OKC"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="SOo-eM-KqZ">
@@ -110,13 +129,13 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="descriptionTextField" destination="KFk-IP-tQk" id="J7j-Qk-UsN"/>
+                        <outlet property="descriptionTextView" destination="ulH-Tt-D4I" id="iXH-HF-TxS"/>
                         <outlet property="titleTextField" destination="w4p-74-eyC" id="haQ-3q-ibH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3YH-HS-fTE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2200" y="191"/>
+            <point key="canvasLocation" x="2198.5507246376815" y="190.84821428571428"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="DSe-4W-Sd7">
@@ -156,11 +175,20 @@
         </scene>
     </scenes>
     <resources>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="opaqueSeparatorColor">
+            <color red="0.77647058823529413" green="0.77647058823529413" blue="0.78431372549019607" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemBlueColor">
             <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemGray6Color">
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
