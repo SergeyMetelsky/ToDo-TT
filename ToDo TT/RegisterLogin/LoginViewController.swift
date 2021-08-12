@@ -10,9 +10,12 @@ import Firebase
 import FirebaseAuth
 
 class LoginViewController: UIViewController {
-
+    
+    //    MARK:- IBOutlets
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
+    
+    //    MARK:- ControllerLifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = "Login"
@@ -21,6 +24,7 @@ class LoginViewController: UIViewController {
         view.addGestureRecognizer(tapRecognizer)
     }
     
+    //    MARK:- IBActions
     @IBAction func registerButtonPressed(_ sender: UIButton) {
         navigationController?.popViewController(animated: true)
     }
@@ -45,6 +49,7 @@ class LoginViewController: UIViewController {
         }
     }
     
+    //    MARK:- Functions
     @objc func firstRecognizerClicked(_ sender: UITapGestureRecognizer) {
         view.endEditing(true)
     }

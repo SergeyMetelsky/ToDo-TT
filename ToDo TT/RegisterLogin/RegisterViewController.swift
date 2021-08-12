@@ -11,9 +11,11 @@ import FirebaseAuth
 
 class RegisterViewController: UIViewController {
     
+    //    MARK:- IBOutlets
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     
+    //    MARK:- ControllerLifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = "Register"
@@ -22,6 +24,7 @@ class RegisterViewController: UIViewController {
         view.addGestureRecognizer(tapRecognizer)
     }
     
+    //    MARK:- IBActions
     @IBAction func loginButtonPressed(_ sender: UIButton) {
         guard let destinationVC = storyboard?.instantiateViewController(identifier: "LoginViewController") else { return }
         navigationController?.pushViewController(destinationVC, animated: true)
@@ -45,6 +48,7 @@ class RegisterViewController: UIViewController {
         }
     }
     
+    //    MARK:- Functions
     @objc func firstRecognizerClicked(_ sender: UITapGestureRecognizer) {
         view.endEditing(true)
     }

@@ -10,19 +10,19 @@ import FirebaseAuth
 import FirebaseDatabase
 
 class TasksListViewController: UIViewController {
+    
+    //    MARK:- Properties
     var tasks: [Task] = []
     let defaultTasks: DefaultTasks = DefaultTasks()
     var userId: String = ""
-
+    
+    //    MARK:- IBOutlets
     @IBOutlet weak var tableView: UITableView!
     
+    //    MARK:- ControllerLifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        NotificationCenter.default.addObserver(self,
-//                                               selector: #selector(notificationFromNewTaskViewController(_:)),
-//                                               name: newTaskViewControllerNotificationName,
-//                                               object: nil)
         navigationItem.title = "Tasks"
         
         tableView.dataSource = self
@@ -30,8 +30,7 @@ class TasksListViewController: UIViewController {
         
         tableView.register(UINib(nibName: "TaskCell", bundle: nil), forCellReuseIdentifier: "TaskCell")
         
-        guard let userId = Auth.auth().currentUser?.uid else { return }
-        self.userId = userId
+        self.userId = Auth.auth().currentUser?.uid ?? ""
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -39,16 +38,15 @@ class TasksListViewController: UIViewController {
         setActualData()
     }
     
+    //    MARK:- IBActions
     @IBAction func plusButtonPressed(_ sender: UIBarButtonItem) {
-//        guard let destinationVC = self.storyboard?.instantiateViewController(identifier: "NewTaskViewController") else { return }
-//        self.navigationController?.pushViewController(destinationVC, animated: true)
-        
         guard let newTaskNavigationController = self.storyboard?.instantiateViewController(identifier: "NewTaskNavigationController") as? UINavigationController else { return }
         guard let newTaskViewController = newTaskNavigationController.viewControllers.first as? NewTaskViewController else { return }
         newTaskViewController.newDataReceived = { [weak self] in
             guard let self = self else { return }
             self.setActualData()
         }
+        
         present(newTaskNavigationController, animated: true, completion: nil)
     }
     
@@ -56,10 +54,7 @@ class TasksListViewController: UIViewController {
         setActualData()
     }
     
-//    @objc func notificationFromNewTaskViewController(_ notification: Notification) {
-//        setActualData()
-//    }
-    
+    //    MARK:- Functions
     func setActualData() {
         let serverManager = ServerManager()
         serverManager.downloadTasksOnComplete(for: self.userId) { [weak self] (tasks) in
@@ -72,6 +67,7 @@ class TasksListViewController: UIViewController {
     }
 }
 
+//    MARK:- Extension
 extension TasksListViewController: UITableViewDelegate, UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -79,13 +75,10 @@ extension TasksListViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return tasks.count
-//        return defaultTasks.tasks.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TaskCell", for: indexPath) as! TaskCell
-//        let defaultTask = self.defaultTasks.tasks[indexPath.item]
-//        cell.setupCell(task: defaultTask)
         let task = self.tasks[indexPath.item]
         cell.setupCell(task: task)
         return cell
@@ -105,13 +98,7 @@ extension TasksListViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        let defaultTask = defaultTasks.tasks[indexPath.row]
         let task = tasks[indexPath.row]
-        
-//        guard let destinationVC = self.storyboard?.instantiateViewController(identifier: "NewTaskViewController") as? NewTaskViewController else { return }
-//        destinationVC.task = defaultTask
-//        self.navigationController?.pushViewController(destinationVC, animated: true)
-        
         guard let newTaskNavigationController = self.storyboard?.instantiateViewController(identifier: "NewTaskNavigationController") as? UINavigationController else { return }
         guard let newTaskViewController = newTaskNavigationController.viewControllers.first as? NewTaskViewController else { return }
         newTaskViewController.task = task
@@ -122,8 +109,4 @@ extension TasksListViewController: UITableViewDelegate, UITableViewDataSource {
         
         present(newTaskNavigationController, animated: true, completion: nil)
     }
-    
-//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-//        return 70
-//    }
 }
